@@ -23,6 +23,8 @@ hook.Add("HUDPaint", "MonHUD", function()
 	surface.DrawRect(scrw - boxW * 9.98, scrh - boxH * 2.2,  boxW, boxH)
     surface.SetDrawColor(0,0,255)
 	surface.DrawRect(scrw - boxW * 9.98, scrh - boxH * 2.2,  boxW * (armor / maxarmor), boxH)
-    if armor = 0 then
+    if armor == 0 then
+        
+    end
     -- end armor
 end) 
