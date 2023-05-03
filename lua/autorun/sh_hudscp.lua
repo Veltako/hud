@@ -1,0 +1,1 @@
+print("L'addon HUD à était lancée.")
