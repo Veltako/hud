@@ -19,12 +19,32 @@ hook.Add("HUDPaint", "MonHUD", function()
 	surface.DrawRect(scrw - boxW * 9.98, scrh - boxH * 1.1,  boxW * (hp / maxhp), boxH)
     -- end health
     -- start armor
-    surface.SetDrawColor(0,0,0,200)
-	surface.DrawRect(scrw - boxW * 9.98, scrh - boxH * 2.2,  boxW, boxH)
-    surface.SetDrawColor(0,0,255)
-	surface.DrawRect(scrw - boxW * 9.98, scrh - boxH * 2.2,  boxW * (armor / maxarmor), boxH)
-    if armor == 0 then
-        
+
+    if armor < 0 then armor = 0 elseif armor > 100 then armor = 100 end
+    if armor != 0 then
+        surface.SetDrawColor(0,0,0,200)
+        surface.DrawRect(scrw - boxW * 9.98, scrh - boxH * 2.2,  boxW, boxH)
+        surface.SetDrawColor(0,0,255)
+        surface.DrawRect(scrw - boxW * 9.98, scrh - boxH * 2.2,  boxW * (armor / maxarmor), boxH) 
     end
     -- end armor
 end) 
+
+
+--Ancien HUD
+local HideElements = { "DarkRP_HUD", "DarkRP_LocalPlayerHUD", "DarkRP_EntityDisplay", "DarkRP_Agenda", "DarkRP_Hungermod" }
+ 
+local disable = {
+CHudHealth = true,
+CHudBattery = true,
+CHudAmmo = true,
+CHudSecondaryAmmo = true,
+DarkRP_HUD = true,
+DarkRP_Hungermod = true,
+}
+ 
+hook.Add( 'HUDShouldDraw', 'Inumix:HUD:HideDefault', function( object )
+if ( disable[ object ] ) then
+return false
+end
+end )
